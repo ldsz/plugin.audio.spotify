@@ -21,12 +21,12 @@ Once again, I find myself wishing for useful "who said that" source identifiers 
 
 ## Analysis
 
+I've found a bug report talking about port overlap, so for testing purposes I turned off all remote control / AirPlay / UPnP services in my Kodi; no change.
+
 I've seen that the plugin starts a cherrypy HTTP server on port 52308. Poking at it a bit, it looks like it's the thing writing this log line.
 
 Digging further, I've seen that spotty is started to expect an LMS device at localhost:52308 - for future functionality to display information
 about what's being played possibly...? Anyway, it seems that the appropriate JSON-RPC service does not exist.
-
-I've found a bug report talking about port overlap, so for testing purposes I turned off all remote control / AirPlay / UPnP services in my Kodi; no change.
 
 For testing, I turned off spotty's LMS integration in `resources/lib/connect_daemon.py:35`, passing only one empty string. Local playback then still works,
 Spotify Connect behaves the same (i.e. visible to Spotify Apps, no reaction), but no error messages are logged any more.
