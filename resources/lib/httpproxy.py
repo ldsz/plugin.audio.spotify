@@ -133,14 +133,7 @@ class Root:
 
     def send_audio_stream(self, track_id, filesize, wave_header, range_l):
         '''chunked transfer of audio data from spotty binary'''
-        if self.spotty_bin != None and \
-           self.spotty_trackid == track_id and \
-           self.spotty_range_l == range_l:
-            # leave the existing spotty running and don't start a new one.
-            log_msg("WHOOPS!!! Running spotty still handling same request - leave it alone.", \
-                    xbmc.LOGERROR)
-            return
-        elif self.spotty_bin != None:
+        if self.spotty_bin != None:
             # If spotty binary still attached for a different request, try to terminate it.
             log_msg("WHOOPS!!! Running spotty detected - killing it to continue.", \
                     xbmc.LOGERROR)
